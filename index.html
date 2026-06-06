@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="page_title">Safal - Premium Organic Fruits</title>
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="lang-en" data-theme="light">
+
+  <!-- Main Header -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="brand-logo" id="btn-brand">
+        <!-- Logo SVG (Organic Fruit Basket / Leaf) -->
+        <svg viewBox="0 0 24 24">
+          <path d="M12,3C11.3,3 10.1,3.4 9.1,4.1C8.2,4.8 7.3,5.9 7.1,7.2C5.9,7.6 4.9,8.4 4.3,9.4C3.7,10.4 3.5,11.7 4,12.8C4.5,14 5.5,14.8 6.7,15.1C7.9,15.4 9.2,15.2 10.2,14.6C11,15.5 12.2,16 13.5,16C14.8,16 16,15.5 16.8,14.6C17.8,15.2 19.1,15.4 20.3,15.1C21.5,14.8 22.5,14 23,12.8C23.5,11.7 23.3,10.4 22.7,9.4C22.1,8.4 21.1,7.6 19.9,7.2C19.7,5.9 18.8,4.8 17.9,4.1C16.9,3.4 15.7,3 15,3L12,3M12,5H15C15.3,5 16.1,5.2 16.7,5.6C17.3,6.1 17.8,6.8 18,7.6C17.1,7.6 16.2,8.1 15.7,8.8C15.2,9.6 15.2,10.6 15.5,11.4C14.7,11.8 13.8,11.9 13,11.5L13.8,13.1C14,13.6 13.8,14.2 13.3,14.4C12.8,14.6 12.2,14.4 12,13.9L10.8,11.5C10,11.9 9.1,11.8 8.3,11.4C8.6,10.6 8.6,9.6 8.1,8.8C7.6,8.1 6.7,7.6 5.8,7.6C6,6.8 6.5,6.1 7.1,5.6C7.7,5.2 8.5,5 8.8,5H12M12,17L12,21C12,21.6 11.6,22 11,22C10.4,22 10,21.6 10,21L10,17L12,17M14,17L14,20C14,20.6 13.6,21 13,21C12.4,21 12,20.6 12,20L12,17L14,17Z" />
+        </svg>
+        <span data-i18n="brand_name">Safal</span>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="nav-links">
+        <div class="nav-link active" id="nav-shop" data-i18n="nav_shop">Shop</div>
+        <div class="nav-link" id="nav-orders" data-i18n="nav_orders">Track Orders</div>
+        <div class="nav-link" id="nav-admin" data-i18n="nav_admin">Seller Panel</div>
+      </nav>
+
+      <!-- Actions (Lang, Theme, Cart) -->
+      <div class="header-actions">
+        <!-- Language Switcher Toggle -->
+        <div class="toggle-switch">
+          <button id="btn-lang-en" class="active">EN</button>
+          <button id="btn-lang-bn">বাংলা</button>
+        </div>
+
+        <!-- Dark/Light Theme Toggle -->
+        <button class="icon-btn" id="btn-theme" title="Toggle Theme">
+          <!-- Moon Icon SVG -->
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Cart Drawer Button -->
+        <button class="icon-btn" id="btn-cart-toggle" title="Open Cart">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-badge" id="cart-counter">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section (Visible in Shop view) -->
+  <section class="hero-section" id="hero-banner">
+    <div class="hero-content">
+      <h1 class="hero-title" data-i18n="hero_title">Premium Organic Fruits</h1>
+      <p class="hero-subtitle" data-i18n="hero_desc">Hand-picked fresh fruits directly from local farms. 100% natural, healthy, and organic.</p>
+      
+      <!-- Search -->
+      <div class="search-wrapper">
+        <input type="text" class="search-input" id="search-bar" placeholder="Search for fruits..." data-i18n-placeholder="search_placeholder">
+        <button class="search-btn" id="btn-search" data-i18n="search">Search</button>
+      </div>
+
+      <!-- Categories Pills -->
+      <div class="category-filters-container" id="category-pills">
+        <!-- JS filled categories -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Main View Container -->
+  <main class="app-container">
+
+    <!-- SHOP VIEW -->
+    <section class="view-section active" id="shop-view">
+      <div class="shop-controls">
+        <div class="product-count">
+          <span id="product-count-num">0</span> <span data-i18n="items_found">fruits available</span>
+        </div>
+        <div>
+          <select class="sort-select" id="sort-filter">
+            <option value="default" data-i18n="sort_default">Default Sorting</option>
+            <option value="price-low" data-i18n="sort_price_low">Price: Low to High</option>
+            <option value="price-high" data-i18n="sort_price_high">Price: High to Low</option>
+            <option value="rating" data-i18n="sort_rating">Customer Rating</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="products-list">
+        <!-- Dynamic product cards -->
+      </div>
+    </section>
+
+    <!-- CHECKOUT VIEW -->
+    <section class="view-section" id="checkout-view">
+      <div class="checkout-layout">
+        <!-- Form -->
+        <div class="checkout-card">
+          <h2 class="checkout-step-title" data-i18n="checkout_billing">Delivery & Billing Details</h2>
+          <form id="checkout-form" onsubmit="return false;">
+            <div class="form-group">
+              <label class="form-label" for="checkout-name" data-i18n="form_name">Full Name</label>
+              <input type="text" id="checkout-name" class="form-input" required placeholder="e.g. Parvez Ahamed">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="checkout-phone" data-i18n="form_phone">Phone Number</label>
+              <input type="tel" id="checkout-phone" class="form-input" required placeholder="e.g. 017XXXXXXXX">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="checkout-address" data-i18n="form_address">Delivery Address</label>
+              <textarea id="checkout-address" class="form-input" rows="3" required placeholder="Street address, city, district"></textarea>
+            </div>
+            
+            <h3 class="form-label" style="margin-bottom: 0.75rem;" data-i18n="form_payment">Payment Method</h3>
+            <div class="payment-options">
+              <div class="payment-card active" data-method="cod">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/>
+                </svg>
+                <span data-i18n="pay_cod">Cash on Delivery</span>
+              </div>
+              <div class="payment-card" data-method="bkash">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+                </svg>
+                <span data-i18n="pay_bkash">bKash / Mobile</span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-checkout" id="btn-place-order" data-i18n="place_order">Confirm & Place Order</button>
+          </form>
+        </div>
+
+        <!-- Summary -->
+        <div class="checkout-card" style="height: fit-content;">
+          <h2 class="checkout-step-title" data-i18n="order_summary">Order Summary</h2>
+          <div id="checkout-items-list">
+            <!-- Selected items summarized -->
+          </div>
+          <div style="margin-top: 1.5rem;" class="cart-footer">
+            <div class="cart-summary-row">
+              <span data-i18n="summary_subtotal">Subtotal</span>
+              <span id="checkout-subtotal">৳ 0</span>
+            </div>
+            <div class="cart-summary-row">
+              <span data-i18n="summary_discount">Discount</span>
+              <span id="checkout-discount">-৳ 0</span>
+            </div>
+            <div class="cart-summary-row">
+              <span data-i18n="summary_delivery">Delivery Fee</span>
+              <span id="checkout-delivery">৳ 50</span>
+            </div>
+            <div class="cart-summary-row total">
+              <span data-i18n="summary_total">Total Payable</span>
+              <span id="checkout-total">৳ 0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDERS TRACKING VIEW -->
+    <section class="view-section" id="orders-view">
+      <h2 style="margin-bottom: 1.5rem;" data-i18n="track_heading">Your Orders & Live Tracking</h2>
+      <div id="orders-tracking-list">
+        <!-- Rendered order summaries and tracking timelines -->
+      </div>
+    </section>
+
+    <!-- SELLER PANEL / ADMIN VIEW -->
+    <section class="view-section" id="admin-view">
+      <div class="admin-tabs">
+        <button class="admin-tab-btn active" id="btn-tab-inventory" data-i18n="admin_tab_inventory">Inventory</button>
+        <button class="admin-tab-btn" id="btn-tab-orders" data-i18n="admin_tab_orders">Orders Manager</button>
+      </div>
+
+      <div class="admin-grid">
+        <!-- Tab Left: Add/Edit Form -->
+        <div class="checkout-card" id="admin-form-container">
+          <h3 class="checkout-step-title" id="admin-form-title" data-i18n="admin_add_title">Add New Fruit Product</h3>
+          <form id="admin-product-form" onsubmit="return false;">
+            <input type="hidden" id="admin-product-id">
+            
+            <div class="form-group">
+              <label class="form-label" for="admin-name-en">Product Name (English)</label>
+              <input type="text" id="admin-name-en" class="form-input" required placeholder="e.g. Red Grapes">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="admin-name-bn">Product Name (Bengali)</label>
+              <input type="text" id="admin-name-bn" class="form-input" required placeholder="যেমন: লাল আঙ্গুর">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="admin-desc-en">Description (English)</label>
+              <textarea id="admin-desc-en" class="form-input" rows="2" required placeholder="Fresh seedless grapes..."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="admin-desc-bn">Description (Bengali)</label>
+              <textarea id="admin-desc-bn" class="form-input" rows="2" required placeholder="তাজা ও বীজহীন আঙ্গুর..."></textarea>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="admin-price" data-i18n="price">Price (৳)</label>
+                <input type="number" id="admin-price" class="form-input" min="1" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="admin-unit">Unit Selection</label>
+                <select id="admin-unit" class="form-input" required>
+                  <option value="kg">kg (কেজি)</option>
+                  <option value="piece">piece (টি)</option>
+                  <option value="dozen">dozen (ডজন)</option>
+                  <option value="100 pcs">100 pcs (১০০ টি)</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="admin-category" data-i18n="category">Category</label>
+                <select id="admin-category" class="form-input" required>
+                  <option value="tropical">Tropical</option>
+                  <option value="berries">Berries & Exotics</option>
+                  <option value="citrus">Citrus</option>
+                  <option value="melons">Melons</option>
+                  <option value="pome">Apples & Pears</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="admin-stock">Stock Quantity</label>
+                <input type="number" id="admin-stock" class="form-input" min="0" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="admin-svg">Visual/Icon Shape</label>
+              <select id="admin-svg" class="form-input" required>
+                <option value="mango">Mango (আম)</option>
+                <option value="lychee">Lychee (লিচু)</option>
+                <option value="banana">Banana (কলা)</option>
+                <option value="watermelon">Watermelon (তরমুজ)</option>
+                <option value="strawberry">Strawberry (স্ট্রবেরি)</option>
+                <option value="apple">Apple (আপেল)</option>
+                <option value="orange">Orange (কমলা)</option>
+                <option value="jackfruit">Jackfruit (কাঁঠাল)</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-checkout" id="btn-admin-submit" data-i18n="save_product">Save Product</button>
+            <button type="button" class="btn-checkout" id="btn-admin-cancel" style="background-color: var(--border-color); color: var(--text-main); margin-top: 0.5rem; display: none;">Cancel Edit</button>
+          </form>
+        </div>
+
+        <!-- Tab Right Contents: List Tables -->
+        <div class="admin-right-panel">
+          <!-- Inventory Table Tab -->
+          <div id="admin-inventory-section">
+            <h3 style="margin-bottom: 1rem;" data-i18n="inventory_title">Current Fruits Stock</h3>
+            <div class="table-wrapper">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Fruit (EN / BN)</th>
+                    <th data-i18n="price">Price</th>
+                    <th>Stock</th>
+                    <th style="text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-inventory-tbody">
+                  <!-- JS generated table rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Orders Manager Table Tab -->
+          <div id="admin-orders-section" style="display: none;">
+            <h3 style="margin-bottom: 1rem;" data-i18n="admin_orders_title">Placed Customer Orders</h3>
+            <div class="table-wrapper">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
+                    <th style="text-align: right;">Update Status</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-orders-tbody">
+                  <!-- JS generated order list rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <div class="footer-content">
+      <div class="footer-brand" data-i18n="brand_name">Safal</div>
+      <p data-i18n="footer_credits">&copy; 2026 Safal Organic Fruit Marketplace. Fresh fruits, fresh health.</p>
+    </div>
+  </footer>
+
+  <!-- PRODUCT DETAIL MODAL -->
+  <div class="modal-overlay" id="product-detail-modal">
+    <div class="modal-content">
+      <button class="modal-close-btn" id="btn-modal-close" title="Close Modal">&times;</button>
+      <div class="product-detail-layout">
+        <!-- Image Box -->
+        <div class="detail-img-box" id="modal-img-container">
+          <!-- Dynamically generated SVG -->
+        </div>
+        <!-- Info Content -->
+        <div>
+          <span class="card-badge" id="modal-category-badge">Category</span>
+          <h2 class="detail-title" id="modal-title">Fruit Name</h2>
+          <div class="rating-stars" id="modal-rating-stars">
+            <!-- Stars -->
+          </div>
+          <div class="detail-price-box">
+            <span class="detail-price" id="modal-price">৳ 0</span>
+            <span class="product-unit" id="modal-unit">/ kg</span>
+          </div>
+          <p class="detail-desc" id="modal-desc">Description text will go here.</p>
+          
+          <h3 class="detail-nutrition-title" data-i18n="nutrition_facts">Nutrition Value (100g)</h3>
+          <div class="nutrition-grid">
+            <div class="nutrition-item">
+              <div class="nutrition-label">Cal</div>
+              <div class="nutrition-val" id="nutr-cal">0</div>
+            </div>
+            <div class="nutrition-item">
+              <div class="nutrition-label">Carbs</div>
+              <div class="nutrition-val" id="nutr-carb">0</div>
+            </div>
+            <div class="nutrition-item">
+              <div class="nutrition-label">Prot</div>
+              <div class="nutrition-val" id="nutr-prot">0</div>
+            </div>
+            <div class="nutrition-item">
+              <div class="nutrition-label">Fat</div>
+              <div class="nutrition-val" id="nutr-fat">0</div>
+            </div>
+          </div>
+
+          <!-- Add to Cart in modal -->
+          <button class="btn-checkout" id="btn-modal-add-cart" data-i18n="add_to_cart" style="margin-bottom: 2rem;">Add to Cart</button>
+
+          <!-- Reviews lists -->
+          <div class="reviews-section">
+            <h3 style="margin-bottom: 1rem;" data-i18n="reviews_title">Customer Reviews</h3>
+            <div id="modal-reviews-list">
+              <!-- Review items -->
+            </div>
+
+            <!-- Add Review Form -->
+            <form class="review-form" id="new-review-form" onsubmit="return false;">
+              <h4 class="review-form-title" data-i18n="write_review">Write a Review</h4>
+              <div class="review-rating-select" id="review-stars-container">
+                <span class="star-input" data-value="1">&#9733;</span>
+                <span class="star-input" data-value="2">&#9733;</span>
+                <span class="star-input" data-value="3">&#9733;</span>
+                <span class="star-input" data-value="4">&#9733;</span>
+                <span class="star-input" data-value="5">&#9733;</span>
+              </div>
+              <input type="text" id="review-username" class="form-input" required placeholder="Your Name" style="margin-bottom: 0.5rem; padding: 0.5rem;" data-i18n-placeholder="name_placeholder">
+              <textarea class="review-textarea" id="review-comment" required placeholder="Share your experience..." data-i18n-placeholder="comment_placeholder"></textarea>
+              <button type="submit" class="btn-submit-review" data-i18n="submit">Submit Review</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOPPING CART SIDE DRAWER -->
+  <div class="modal-overlay" id="cart-drawer-overlay"></div>
+  <div class="cart-drawer" id="shopping-cart-drawer">
+    <div class="cart-header">
+      <h2 data-i18n="cart_title">Your Cart</h2>
+      <button class="icon-btn" id="btn-cart-close" title="Close Cart">&times;</button>
+    </div>
+    <div class="cart-body" id="cart-items-container">
+      <!-- Cart items loaded dynamically -->
+    </div>
+    <div class="cart-footer">
+      <div class="promo-code-input-wrapper">
+        <input type="text" class="promo-input" id="cart-promo-input" placeholder="Promo code (e.g. FRESH10)" data-i18n-placeholder="promo_placeholder">
+        <button class="btn-promo-apply" id="btn-apply-promo" data-i18n="apply">Apply</button>
+      </div>
+      <div class="promo-message" id="cart-promo-message"></div>
+
+      <div class="cart-summary-row">
+        <span data-i18n="summary_subtotal">Subtotal</span>
+        <span id="cart-subtotal">৳ 0</span>
+      </div>
+      <div class="cart-summary-row">
+        <span data-i18n="summary_discount">Discount</span>
+        <span id="cart-discount">-৳ 0</span>
+      </div>
+      <div class="cart-summary-row">
+        <span data-i18n="summary_delivery">Delivery Fee</span>
+        <span id="cart-delivery">৳ 50</span>
+      </div>
+      <div class="cart-summary-row total">
+        <span data-i18n="summary_total">Total Payable</span>
+        <span id="cart-total">৳ 0</span>
+      </div>
+      <button class="btn-checkout" id="btn-go-to-checkout" style="margin-top: 1rem;" data-i18n="checkout_btn">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toasts-list"></div>
+
+  <!-- Scripts -->
+  <script src="database.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
